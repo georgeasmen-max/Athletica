@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athletica - Football Hub</title>
+    <style>
+        :root {
+            --white: #ffffff;
+            --light-blue: #e3f2fd;
+            --brand-blue: #2196f3;
+            --dark-blue: #0d47a1;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --gray-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--brand-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--dark-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(33, 150, 243, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Component Cards */
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--brand-blue);
+            padding-left: 10px;
+        }
+
+        /* Live Scores Widget */
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        .match-row:last-child {
+            border-bottom: none;
+        }
+
+        .team {
+            font-weight: 600;
+            width: 40%;
+        }
+
+        .team.home { text-align: right; }
+        .team.away { text-align: left; }
+
+        .score-box {
+            background-color: var(--light-blue);
+            padding: 5px 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .match-status {
+            font-size: 12px;
+            color: #e53935;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .match-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+        }
+
+        /* Table Widget */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        th {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(227, 242, 253, 0.3);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-box {
+            background-color: var(--light-blue);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            border-top: 1px solid var(--light-blue);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Athletica<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Scores</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Standings</a></li>
+                <li><a href="#">Stats</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Your Ultimate Football Dashboard</h1>
+        <p>Real-time fixtures, comprehensive statistics, and league tracking all tailored into a pristine interface.</p>
+    </section>
+
+    <main class="main-container">
+        
+        <div class="left-column">
+            
+            <div class="card">
+                <h2 class="card-title">Live & Upcoming Fixtures</h2>
+                
+                <div class="match-row">
+                    <div class="team home">London FC</div>
+                    <div class="match-info">
+                        <div class="score-box">2 - 1</div>
+                        <div class="match-status">74'</div>
+                    </div>
+                    <div class="team away">Madrid Athletic</div>
+                </div>
+
+                <div class="match-row">
+                    <div class="team home">Munich United</div>
+                    <div class="match-info">
+                        <div class="score-box">0 - 0</div>
+                        <div class="match-status">32'</div>
+                    </div>
+                    <div class="team away">Milano City</div>
+                </div>
+
+                <div class="match-row">
+                    <div class="team home">Paris Rovers</div>
+                    <div class="match-info">
+                        <div class="score-box">21:00</div>
+                    </div>
+                    <div class="team away">Barcelona Town</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Season Overview Metrics</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">380</div>
+                        <div class="stat-label">Matches Played</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">1,142</div>
+                        <div class="stat-label">Goals Scored</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">4.2</div>
+                        <div class="stat-label">Cards / Match</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">78%</div>
+                        <div class="stat-label">Pass Accuracy</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right-column">
+            
+            <div class="card">
+                <h2 class="card-title">League Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Club</th>
+                            <th>MP</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>London FC</strong></td>
+                            <td>28</td>
+                            <td><strong>64</strong></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Munich United</td>
+                            <td>28</td>
+                            <td>61</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Madrid Athletic</td>
+                            <td>27</td>
+                            <td>55</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Paris Rovers</td>
+                            <td>28</td>
+                            <td>52</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Milano City</td>
+                            <td>28</td>
+                            <td>48</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Athletica. All rights reserved. Data tracking & sports analytics.</p>
+    </footer>
+
+</body>
+</html>
